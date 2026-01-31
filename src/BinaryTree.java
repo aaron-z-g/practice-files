@@ -1,4 +1,6 @@
-public class solution1{
+import java.util.List;
+
+public class BinaryTree1 {
     sealed interface BinaryTree permits Leaf, Node{};
     record Leaf() implements BinaryTree{};
     record Node(BinaryTree left, int val, BinaryTree right) implements BinaryTree{};
@@ -27,7 +29,7 @@ public class solution1{
         return switch(tree){
             case Leaf() -> false;
             case Node(BinaryTree left, int val, BinaryTree right) ->
-                val <0|| containsNegtive(left) || containsNegtive(right);
+                    val <0|| containsNegtive(left) || containsNegtive(right);
         }
     }
 
@@ -35,7 +37,7 @@ public class solution1{
         return switch(tree){
             case Leaf()-> 0;
             case Node(BinaryTree left, int val, BinaryTree right)->
-                Math.max(maxDepth(left), maxDepth(right))+1;
+                    Math.max(maxDepth(left), maxDepth(right))+1;
         }
     }
 
@@ -47,7 +49,7 @@ public class solution1{
         return switch(tree){
             case Leaf() -> new Nil<>();
             case Node(var left, var val, var right) ->
-                Append(Append(flatten(left),List.of(val)),faltten(right));
+                    Append(Append(faltten(left), List.of(val)),faltten(right));
         }
     }
 
@@ -55,7 +57,7 @@ public class solution1{
         return switch(list){
             case Nil<Integer>() -> list2;
             case Cons<Integer>(var first,var rest) ->
-                new Cons<Integer>(first, Append(rest, list2));
-        }
+                    new Cons<Integer>(first, Append(rest, list2));
+        };
     }
 }
